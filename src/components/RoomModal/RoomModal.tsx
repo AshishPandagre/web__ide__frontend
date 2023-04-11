@@ -17,7 +17,7 @@ const RoomModal: React.FC<RoomModalType> = ({ onClose }) => {
   useHotkeys("esc", onClose);
 
   return (
-    <Modal>
+    <Modal className="select-none">
       <ModalTitle onClose={onClose} text={"Room Configuration"} />
       <ModalContent>
         <span className="text-xs text-gray-500">
