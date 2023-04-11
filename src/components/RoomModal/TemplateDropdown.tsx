@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FaPython } from "react-icons/fa";
 import { HiTemplate } from "react-icons/hi";
 import templates, { Template } from "../../utils/supported_templates";
-import Dropdown from "../Dropdown/Dropdown";
-import DropdownItem from "../Dropdown/DropdownItem";
-import DropdownTitle from "../Dropdown/DropdownTitle";
-import Input from "../Input/Input";
+import Dropdown from "../shared/Dropdown/Dropdown";
+import DropdownItem from "../shared/Dropdown/DropdownItem";
+import DropdownTitle from "../shared/Dropdown/DropdownTitle";
+import Input from "../shared/Input/Input";
 
 const TemplateDropdown = () => {
   const [viewTemplates, setViewTemplates] = useState<Template[]>(templates);

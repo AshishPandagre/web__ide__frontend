@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import Button from "../Button/Button";
-import Input from "../Input/Input";
-import Modal from "../Modal/Modal";
-import ModalContent from "../Modal/ModalContent";
-import ModalTitle from "../Modal/ModalTitle";
+import Button from "../shared/Button/Button";
+import Input from "../shared/Input/Input";
+import Modal from "../shared/Modal/Modal";
+import ModalContent from "../shared/Modal/ModalContent";
+import ModalTitle from "../shared/Modal/ModalTitle";
 import TemplateDropdown from "./TemplateDropdown";
 
 type RoomModalType = {
