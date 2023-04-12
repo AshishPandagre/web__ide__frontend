@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import Button from "../shared/Button/Button";
-import Input from "../shared/Input/Input";
-import Modal from "../shared/Modal/Modal";
-import ModalContent from "../shared/Modal/ModalContent";
-import ModalTitle from "../shared/Modal/ModalTitle";
+
 import TemplateDropdown from "./TemplateDropdown";
+import Button from "../../../components/Button/Button";
+import Input from "../../../components/Input/Input";
+import Modal from "../../../components/Modal/Modal";
+import ModalContent from "../../../components/Modal/ModalContent";
+import ModalTitle from "../../../components/Modal/ModalTitle";
 
 type RoomModalType = {
   onClose: () => void;

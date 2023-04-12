@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { FaPython } from "react-icons/fa";
 import { IconType } from "react-icons/lib";
-import { Template } from "../../../utils/supported_templates";
+import { Template } from "../../data/supported_templates";
 
 interface PropsType {
   Icon: IconType;

@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/components/RoomModal/RoomModal.tsx"],
+  "include": ["src", "src/features/createRoom/components/RoomModal.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

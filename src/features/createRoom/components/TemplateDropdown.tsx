@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { FaPython } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { HiTemplate } from "react-icons/hi";
-import templates, { Template } from "../../utils/supported_templates";
-import Dropdown from "../shared/Dropdown/Dropdown";
-import DropdownItem from "../shared/Dropdown/DropdownItem";
-import DropdownTitle from "../shared/Dropdown/DropdownTitle";
-import Input from "../shared/Input/Input";
+import Dropdown from "../../../components/Dropdown/Dropdown";
+import DropdownItem from "../../../components/Dropdown/DropdownItem";
+import DropdownTitle from "../../../components/Dropdown/DropdownTitle";
+import Input from "../../../components/Input/Input";
+import templates, { Template } from "../../../data/supported_templates";
 
 const TemplateDropdown = () => {
   const [viewTemplates, setViewTemplates] = useState<Template[]>(templates);
@@ -27,6 +26,8 @@ const TemplateDropdown = () => {
       setViewTemplates(templates);
       return;
     }
+
+    // filter the list containing the typed template
     setViewTemplates(
       viewTemplates.filter(
         (temp) =>
