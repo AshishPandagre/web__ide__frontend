@@ -9,7 +9,7 @@ interface PropsType {
 const Dropdown: React.FC<PropsType> = ({ children, open, toggle }) => {
   return (
     <div
-      className="flex items-center bg-[#292524] w-[400px] p-2 rounded-xl flex-col gap-4 hover:cursor-pointer"
+      className="flex items-center bg-black/20 w-[400px] p-2 rounded-xl flex-col gap-4 hover:cursor-pointer"
       onClick={toggle}
     >
       {children[0]}

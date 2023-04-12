@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ children, className }) => {
         style={{ transform: "translate(-50%, -50%)" }}
       >
         <div
-          className={`flex flex-col text-white bg-modal_color py-6 rounded-xl ${className}`}
+          className={`flex flex-col text-white bg-[#252525] py-6 rounded-xl ${className}`}
         >
           {children}
         </div>

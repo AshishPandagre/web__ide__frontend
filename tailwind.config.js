@@ -2,12 +2,7 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      colors: {
-        primary: "#161616",
-        modal_color: "#1c1917",
-      },
-    },
+    extend: {},
   },
-  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
+  plugins: [require("tailwind-scrollbar")],
 };

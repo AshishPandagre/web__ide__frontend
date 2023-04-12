@@ -31,7 +31,9 @@ const RoomModal: React.FC<RoomModalType> = ({ onClose }) => {
           placeholder={"Enter room name"}
         />
         <TemplateDropdown />
-        <Button onClick={console.log} className="w-fit self-end">Create room</Button>
+        <Button onClick={console.log} className="w-fit self-end bg-[#4d7c0f]">
+          Create room
+        </Button>
       </ModalContent>
     </Modal>
   );

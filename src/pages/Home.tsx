@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import Button from "../components/shared/Button/Button";
+import Button from "../components/Button/Button";
 import RoomModal from "../features/createRoom/components/RoomModal";
 
 const Home = () => {

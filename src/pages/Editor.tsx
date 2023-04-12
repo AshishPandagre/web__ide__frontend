@@ -3,7 +3,7 @@ import EditorHeader from "../features/editorHeader/components/EditorHeader";
 
 const Editor = () => {
   return (
-    <div className="bg-primary h-screen flex flex-col overflow-hidden">
+    <div className="bg-[#131313] h-screen flex flex-col overflow-hidden">
       <EditorHeader />
     </div>
   );
