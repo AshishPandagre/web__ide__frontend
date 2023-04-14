@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import TemplateDropdown from "./TemplateDropdown";
-import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
 import Modal from "../../../components/Modal/Modal";
 import ModalContent from "../../../components/Modal/ModalContent";
 import ModalTitle from "../../../components/Modal/ModalTitle";
+import TemplateDropdown from "./TemplateDropdown";
 
 type RoomModalType = {
   onClose: () => void;
@@ -31,9 +30,12 @@ const RoomModal: React.FC<RoomModalType> = ({ onClose }) => {
           placeholder={"Enter room name"}
         />
         <TemplateDropdown />
-        <Button onClick={console.log} className="w-fit self-end bg-[#4d7c0f]">
-          Create room
-        </Button>
+        <button
+        className="bg-[#4d7c0f] flex w-fit self-end items-center gap-4 px-4 py-2 hover:opacity-80 hover:brightness-150 rounded-xl"
+        onClick={console.log}
+      >
+        <span>Create Room</span>
+      </button>
       </ModalContent>
     </Modal>
   );

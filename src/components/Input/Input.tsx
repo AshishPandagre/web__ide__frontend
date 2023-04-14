@@ -33,16 +33,16 @@ const Input: React.FC<PropsType> = ({
   };
 
   return (
-    <div className="flex flex-col items-center w-full just">
+    <div className="just flex w-full flex-col items-center">
       <FaRandom
-        className="absolute self-end mt-3 mr-3 cursor-pointer hover:fill(black)"
+        className="hover:fill(black) absolute mr-3 mt-3 cursor-pointer self-end"
         fill="rgb(255,255,255,0.6)"
         onClick={(e) => setValue(uniqueNamesGenerator(config))}
       />
       <input
         ref={inputRef}
         value={value}
-        className="w-full rounded-xl h-10 outline-none bg-black/20 ring-1 text-white/80 ring-white/60 px-4"
+        className="h-10 w-full rounded-xl bg-black/20 px-4 text-white/80 outline-none ring-1 ring-white/60"
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
