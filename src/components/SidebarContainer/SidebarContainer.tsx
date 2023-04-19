@@ -6,7 +6,7 @@ interface PropsType {
 
 const SidebarContainer: React.FC<PropsType> = ({ children }) => {
   return (
-    <div className="flex w-80 flex-col divide-y divide-[#2d2d31]">
+    <div className="flex w-full flex-col divide-y divide-[#2d2d31]">
       {children}
     </div>
   );

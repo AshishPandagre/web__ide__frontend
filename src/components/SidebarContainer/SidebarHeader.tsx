@@ -6,7 +6,7 @@ interface PropsType {
 
 const SidebarHeader: React.FC<PropsType> = ({ children }) => {
   return (
-    <div className="sticky flex items-center justify-between bg-[#18181b] px-3 py-1">
+    <div className="flex items-center justify-between bg-[#18181b] px-3 py-1">
       {children}
     </div>
   );

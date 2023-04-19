@@ -5,7 +5,7 @@ interface PropsType {
 }
 
 const SidebarContent: React.FC<PropsType> = ({ children }) => {
-  return <div className="h-full border px-3">{children}</div>;
+  return <div className="h-full px-3">{children}</div>;
 };
 
 export default SidebarContent;
