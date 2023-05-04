@@ -1,10 +1,10 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineLock } from "react-icons/ai";
 import { BiRefresh } from "react-icons/bi";
 import { MdOpenInNew } from "react-icons/md";
 
 const Preview = () => {
-  const url = "https://religious-buffalo.codedamn.app:1337/";
+  const [url, setUrl] = useState("https://chat.openai.com/");
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const refresh = () => {
@@ -25,7 +25,7 @@ const Preview = () => {
         />
         <div className="flex flex-1 flex-grow select-all items-center gap-2 overflow-hidden whitespace-nowrap bg-[#18181b] px-2 py-1 text-sm text-gray-300">
           <AiOutlineLock size={16} />
-          <span>{url}</span>
+          <input value={url} className="bg-transparent outline-none w-full" onChange={(e) => setUrl(e.target.value)} />
         </div>
         <MdOpenInNew
           size={20}
