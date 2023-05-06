@@ -3,6 +3,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import SidebarHeader from "../../../components/SidebarContainer/SidebarHeader";
 import SidebarContent from "../../../components/SidebarContainer/SidebarContent";
 import SidebarContainer from "../../../components/SidebarContainer/SidebarContainer";
+import FileTree from "./FileTree";
 
 const FileExplorer = () => {
   return (
@@ -16,7 +17,9 @@ const FileExplorer = () => {
           <BsThreeDotsVertical size={18} className="cursor-pointer" />
         </div>
       </SidebarHeader>
-      <SidebarContent>filesystem...</SidebarContent>
+      <SidebarContent>
+        <FileTree />
+      </SidebarContent>
     </SidebarContainer>
   );
 };
