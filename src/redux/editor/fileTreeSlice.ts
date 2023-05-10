@@ -1,21 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fileTree from "../../data/fileTreeInitialState";
+import { elements, folder_children } from "../../data/fileTreeInitialState";
 
-export interface File {
-  type: "file";
+export interface ElementType {
+  type: string;
+  name: string;
+  parent: string;
 }
 
-export interface Folder {
-  type: "folder";
-  children: FileTree;
-  open: boolean;
+export interface ElementsType {
+  [key: string]: ElementType;
 }
 
-export interface FileTree {
-  [fileName: string]: File | Folder;
+export interface FolderChildrenType {
+  [key: string]: string[];
 }
 
-let initialState: FileTree = fileTree;
+let initialState = {
+  elements,
+  folder_children,
+};
 
 export const fileTreeSlice = createSlice({
   name: "fileTree",
