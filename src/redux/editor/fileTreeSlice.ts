@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { elements, folder_children } from "../../data/fileTreeInitialState";
 
 export interface ElementType {
+  id: string
   type: string;
   name: string;
   parent: string;

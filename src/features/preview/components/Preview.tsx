@@ -4,7 +4,7 @@ import { BiRefresh } from "react-icons/bi";
 import { MdOpenInNew } from "react-icons/md";
 
 const Preview = () => {
-  const [url, setUrl] = useState("https://chat.openai.com/");
+  const [url, setUrl] = useState("");
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const refresh = () => {

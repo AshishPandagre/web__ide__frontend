@@ -1,32 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { RiFolderOpenFill } from "react-icons/ri";
-import { FileTree } from "../../../redux/editor/fileTreeSlice";
+import { useAppSelector } from "../../../redux/hooks";
 import Directory from "./Directory";
 
 type FolderProps = {
-  padding: number;
   name: string;
-  content: FileTree;
-  open: boolean;
-  location: string;
+  parent: string;
+  id: string;
+  padding: number;
 };
 
-const Folder: React.FC<FolderProps> = ({
-  padding,
-  content,
-  name,
-  open,
-  location,
-}) => {
-  console.log("[location]", location);
+const Folder: React.FC<FolderProps> = ({ name, parent, id, padding }) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex flex-col">
-      {/* single folder */}
       <div
         className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e]`}
         style={{ paddingLeft: padding * 4 }}
+        onClick={() => setOpen(!open)}
       >
         <div className="flex items-center gap-1">
           <MdArrowForwardIos size={10} className={open ? "rotate-90" : ""} />
@@ -34,10 +27,7 @@ const Folder: React.FC<FolderProps> = ({
         </div>
         <span>{name}</span>
       </div>
-      {/* children of a folder goes here.. */}
-      {open && (
-        <Directory fileTree={content} padding={padding} location={location} />
-      )}
+      {open && <Directory parent_id={id} padding={padding} />}
     </div>
   );
 };

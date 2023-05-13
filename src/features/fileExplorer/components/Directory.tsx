@@ -1,30 +1,47 @@
-// renders the current directory.
-
 import React from "react";
-import Folder from "./Folder";
+import { useAppSelector } from "../../../redux/hooks";
 import File from "./File";
-import useGetSortedFileFolder from "../hooks/useGetSortedFileFolder";
-import { FileTree as FileTreeType } from "../../../redux/editor/fileTreeSlice";
+import Folder from "./Folder";
 
 type DirectoryProps = {
-  fileTree: FileTreeType;
+  parent_id: string;
   padding: number;
-  location: string
 };
 
-const Directory: React.FC<DirectoryProps> = ({ fileTree, padding, location }) => {
-  const { files, folders } = useGetSortedFileFolder(fileTree);
+const Directory: React.FC<DirectoryProps> = ({ parent_id, padding }) => {
+  const folder_children = useAppSelector(
+    (state) => state.fileTree.folder_children
+  )[parent_id];
+  const elements = useAppSelector((state) => state.fileTree.elements);
+
+  const children_obj = folder_children.map((c_id) => elements[c_id]);
 
   return (
     <>
-      {folders.map((name) => (
-        //@ts-ignore
-        <Folder name={name} padding={padding+3} content={fileTree[name].children} open={fileTree[name].open} location={`${location}/${name}`} />
-      ))}
-      {files.map((name) => (
-        <File padding={padding+7} name={name} location={`${location}/${name}`} />
-      ))}
+      {children_obj.map((obj) => {
+        if (obj.type == "file")
+          return (
+            <File
+              parent={parent_id}
+              id={obj.id}
+              name={obj.name}
+              key={obj.id}
+              padding={padding + 3}
+            />
+          );
+        else
+          return (
+            <Folder
+              id={obj.id}
+              name={obj.name}
+              parent={parent_id}
+              key={obj.id}
+              padding={padding + 3}
+            />
+          );
+      })}
     </>
   );
 };
+
 export default Directory;
