@@ -7,6 +7,7 @@ import {
   setActiveElement,
 } from "../../../redux/editor/fileTreeSlice";
 import { useAppDispatch } from "../../../redux/hooks";
+import { setActiveTab } from "../../../redux/editor/tabSlice";
 
 type FileProps = {
   obj: FileType;
@@ -20,11 +21,14 @@ const File: React.FC<FileProps> = ({ obj, parent, padding, isActive }) => {
 
   const onClick = () => {
     dispatch(setActiveElement(obj.id));
+    dispatch(setActiveTab(obj.id));
   };
 
   return (
     <div
-      className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e] ${isActive && 'bg-[#37373d]'}`}
+      className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e] ${
+        isActive && "bg-[#37373d]"
+      }`}
       style={{ paddingLeft: padding * 4 }}
       onClick={onClick}
     >

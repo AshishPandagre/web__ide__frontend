@@ -1,14 +1,39 @@
 import React from "react";
+import { AiFillHtml5 } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
-import { IconType } from "react-icons/lib";
+import {
+  FileType,
+  FolderType,
+  openFolder,
+  setActiveElement,
+} from "../../../redux/editor/fileTreeSlice";
+import { setActiveTab } from "../../../redux/editor/tabSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 
 type SingleTabProps = {
-  Icon: IconType;
-  title: string;
+  tab: FolderType | FileType;
   active: boolean;
 };
 
-const SingleTab: React.FC<SingleTabProps> = ({ Icon, title, active }) => {
+const SingleTab: React.FC<SingleTabProps> = ({ tab, active }) => {
+  const dispatch = useAppDispatch();
+  const elements = useAppSelector((state) => state.fileTree.elements);
+
+  const onClick = () => {
+    dispatch(setActiveTab(tab.id));
+    dispatch(setActiveElement(tab.id));
+
+    let parent = tab.parent;
+    if (parent == "root") return;
+
+    do {
+      console.log("[opening]", parent);
+      dispatch(openFolder({ id: parent, open: true }));
+      let parent_obj = elements[parent];
+      parent = parent_obj.parent;
+    } while (parent != "root");
+  };
+
   return (
     <div
       className={`group flex w-fit items-center gap-2 p-2 ${
@@ -16,9 +41,10 @@ const SingleTab: React.FC<SingleTabProps> = ({ Icon, title, active }) => {
           ? "border-t-2 border-red-400 bg-[#1e1e1e]"
           : "bg-[#2d2d2d] text-[#acacac] hover:bg-[#292929]"
       }`}
+      onClick={onClick}
     >
-      <Icon size={17} />
-      <p>{title}</p>
+      <AiFillHtml5 size={17} />
+      <p>{tab.name}</p>
       <IoClose
         fill="white"
         size={17}

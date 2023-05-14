@@ -1,14 +1,19 @@
 import React from "react";
-import { useAppSelector } from "../../../redux/hooks";
-import File from "./File";
-import Folder from "./Folder";
+import { setActiveElement } from "../../../redux/editor/fileTreeSlice";
+import { useAppDispatch } from "../../../redux/hooks";
 import Directory from "./Directory";
 
 type FileTreeProps = {};
 
 const FileTree: React.FC<FileTreeProps> = () => {
+  const dispatch = useAppDispatch();
+
+  const onClick = () => {
+    dispatch(setActiveElement("root"));
+  };
+
   return (
-    <div className="text-sm">
+    <div className="h-full text-sm" onClick={onClick}>
       <Directory parent_id="root" padding={0} />
     </div>
   );

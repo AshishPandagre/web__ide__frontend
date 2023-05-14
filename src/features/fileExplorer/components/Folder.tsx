@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Directory from "./Directory";
 import {
   FolderType,
+  openFolder,
   setActiveElement,
-  toggleOpenFolder,
 } from "../../../redux/editor/fileTreeSlice";
 
 type FolderProps = {
@@ -21,13 +21,15 @@ const Folder: React.FC<FolderProps> = ({ obj, parent, padding, isActive }) => {
 
   const onClick = () => {
     dispatch(setActiveElement(obj.id));
-    dispatch(toggleOpenFolder(obj.id));
+    dispatch(openFolder({ id: obj.id, open: !obj.open }));
   };
 
   return (
     <div className="flex flex-col">
       <div
-        className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e] ${isActive && 'bg-[#37373d]'}`}
+        className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e] ${
+          isActive && "bg-[#37373d]"
+        }`}
         style={{ paddingLeft: padding * 4 }}
         onClick={onClick}
       >

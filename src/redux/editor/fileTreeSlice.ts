@@ -44,9 +44,9 @@ export const fileTreeSlice = createSlice({
 
     deleteFileFolder: (state) => {},
 
-    toggleOpenFolder: (state, action) => {
-      const element = state.elements[action.payload] as FolderType;
-      element.open = !element.open;
+    openFolder: (state, action) => {
+      const element = state.elements[action.payload.id] as FolderType;
+      element.open = action.payload.open
     },
 
     setActiveElement: (state, action) => {
@@ -61,6 +61,6 @@ export const {
   addFileFolder,
   renameFileFolder,
   deleteFileFolder,
-  toggleOpenFolder,
+  openFolder,
   setActiveElement,
 } = fileTreeSlice.actions;
