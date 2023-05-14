@@ -1,33 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { RiFolderOpenFill } from "react-icons/ri";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Directory from "./Directory";
+import {
+  FolderType,
+  setActiveElement,
+  toggleOpenFolder,
+} from "../../../redux/editor/fileTreeSlice";
 
 type FolderProps = {
-  name: string;
+  obj: FolderType;
   parent: string;
-  id: string;
   padding: number;
+  isActive: boolean;
 };
 
-const Folder: React.FC<FolderProps> = ({ name, parent, id, padding }) => {
-  const [open, setOpen] = useState(false);
+const Folder: React.FC<FolderProps> = ({ obj, parent, padding, isActive }) => {
+  const dispatch = useAppDispatch();
+
+  const onClick = () => {
+    dispatch(setActiveElement(obj.id));
+    dispatch(toggleOpenFolder(obj.id));
+  };
 
   return (
     <div className="flex flex-col">
       <div
-        className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e]`}
+        className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e] ${isActive && 'bg-[#37373d]'}`}
         style={{ paddingLeft: padding * 4 }}
-        onClick={() => setOpen(!open)}
+        onClick={onClick}
       >
         <div className="flex items-center gap-1">
-          <MdArrowForwardIos size={10} className={open ? "rotate-90" : ""} />
+          <MdArrowForwardIos
+            size={10}
+            className={obj.open ? "rotate-90" : ""}
+          />
           <RiFolderOpenFill fill="#90a4ae" size={20} />
         </div>
-        <span>{name}</span>
+        <span>{obj.name}</span>
       </div>
-      {open && <Directory parent_id={id} padding={padding} />}
+      {obj.open && <Directory parent_id={obj.id} padding={padding} />}
     </div>
   );
 };

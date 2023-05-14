@@ -17,6 +17,8 @@ export const folder_children: FolderChildrenType = {
   "008": [],
 };
 
+export const activeElement = "001"
+
 export const elements: ElementsType = {
   "001": {
     id: "001",
