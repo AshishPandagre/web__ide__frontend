@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useDirectoryContent(location: string) {
+export default function useGetDirectoryContent(location: string) {
   const [data, setData] = useState();
   const [loading, setLoading] = useState();
 

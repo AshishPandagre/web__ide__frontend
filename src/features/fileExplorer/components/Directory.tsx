@@ -2,6 +2,7 @@ import React from "react";
 import { useAppSelector } from "../../../redux/hooks";
 import File from "./File";
 import Folder from "./Folder";
+import useGetSortedFileFolder from "../hooks/useGetSortedFileFolder";
 
 type DirectoryProps = {
   parent_id: string;
@@ -14,7 +15,8 @@ const Directory: React.FC<DirectoryProps> = ({ parent_id, padding }) => {
   )[parent_id];
   const elements = useAppSelector((state) => state.fileTree.elements);
 
-  const children_obj = folder_children.map((c_id) => elements[c_id]);
+  let children_obj = folder_children.map((c_id) => elements[c_id]);
+  children_obj = useGetSortedFileFolder(children_obj);
 
   return (
     <>
@@ -26,7 +28,7 @@ const Directory: React.FC<DirectoryProps> = ({ parent_id, padding }) => {
               id={obj.id}
               name={obj.name}
               key={obj.id}
-              padding={padding + 3}
+              padding={padding + 7}
             />
           );
         else

@@ -8,7 +8,7 @@ import {
 } from "../redux/editor/fileTreeSlice";
 
 export const folder_children: FolderChildrenType = {
-  root: ["001", "006", "008"],
+  root: ["001", "006", "008", "009"],
   "001": ["002"],
   "002": ["003", "004"],
   "003": ["005"],
@@ -66,5 +66,10 @@ export const elements: ElementsType = {
     name: "test",
     parent: "root",
   },
+  "009": {
+    id: "009",
+    name: "index.html",
+    parent: "root",
+    type: "file",
+  },
 };
-

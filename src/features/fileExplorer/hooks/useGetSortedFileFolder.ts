@@ -11,5 +11,5 @@ const filterAndSortByName = (content: ElementType[], type: string) => {
 export default function useGetSortedFileFolder(content: ElementType[]) {
   let files = filterAndSortByName(content, "file");
   let folders = filterAndSortByName(content, "folder");
-  return { files, folders };
+  return [ ...folders, ...files ];
 }
