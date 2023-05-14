@@ -19,9 +19,10 @@ type FolderProps = {
 const Folder: React.FC<FolderProps> = ({ obj, parent, padding, isActive }) => {
   const dispatch = useAppDispatch();
 
-  const onClick = () => {
+  const onClick = (e: React.MouseEvent) => {
     dispatch(setActiveElement(obj.id));
     dispatch(openFolder({ id: obj.id, open: !obj.open }));
+    e.stopPropagation();
   };
 
   return (

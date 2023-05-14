@@ -49,7 +49,7 @@ export const fileTreeSlice = createSlice({
       element.open = action.payload.open
     },
 
-    setActiveElement: (state, action) => {
+    setActiveElement: (state, action) => {      
       state.activeElement = action.payload;
     },
   },

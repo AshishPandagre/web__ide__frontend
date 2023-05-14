@@ -19,9 +19,10 @@ const SingleTab: React.FC<SingleTabProps> = ({ tab, active }) => {
   const dispatch = useAppDispatch();
   const elements = useAppSelector((state) => state.fileTree.elements);
 
-  const onClose = () => {
-    dispatch(closeTab(tab.id))
-  }
+  const onClose = (ev: React.MouseEvent) => {
+    ev.stopPropagation();
+    dispatch(closeTab(tab.id));
+  };
 
   const onClick = () => {
     dispatch(setActiveTab(tab.id));
@@ -31,7 +32,6 @@ const SingleTab: React.FC<SingleTabProps> = ({ tab, active }) => {
     if (parent == "root") return;
 
     do {
-      console.log("[opening]", parent);
       dispatch(openFolder({ id: parent, open: true }));
       let parent_obj = elements[parent];
       parent = parent_obj.parent;

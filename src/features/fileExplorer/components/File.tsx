@@ -1,12 +1,12 @@
 import path from "path";
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillHtml5 } from "react-icons/ai";
 import { IconType } from "react-icons/lib";
 import {
   FileType,
   setActiveElement,
 } from "../../../redux/editor/fileTreeSlice";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { addTab, setActiveTab } from "../../../redux/editor/tabSlice";
 
 type FileProps = {
@@ -18,11 +18,12 @@ type FileProps = {
 
 const File: React.FC<FileProps> = ({ obj, parent, padding, isActive }) => {
   const dispatch = useAppDispatch();
+  const activeTabId = useAppSelector(state => state.tabs.activeTab)
 
-  const onClick = () => {
+  const onClick = (e: React.MouseEvent) => {
     dispatch(setActiveElement(obj.id));
     dispatch(addTab(obj.id));
-    dispatch(setActiveTab(obj.id));
+    e.stopPropagation()
   };
 
   return (

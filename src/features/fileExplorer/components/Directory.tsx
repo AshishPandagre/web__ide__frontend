@@ -10,9 +10,7 @@ type DirectoryProps = {
 };
 
 const Directory: React.FC<DirectoryProps> = ({ parent_id, padding }) => {
-  const folder_children = useAppSelector(
-    (state) => state.fileTree.folder_children
-  )[parent_id];
+  const folder_children = useAppSelector((state) => state.fileTree.folder_children)[parent_id];
   const elements = useAppSelector((state) => state.fileTree.elements);
   const activeElement = useAppSelector((state) => state.fileTree.activeElement);
 
