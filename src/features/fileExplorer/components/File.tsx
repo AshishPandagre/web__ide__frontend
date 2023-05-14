@@ -7,7 +7,7 @@ import {
   setActiveElement,
 } from "../../../redux/editor/fileTreeSlice";
 import { useAppDispatch } from "../../../redux/hooks";
-import { setActiveTab } from "../../../redux/editor/tabSlice";
+import { addTab, setActiveTab } from "../../../redux/editor/tabSlice";
 
 type FileProps = {
   obj: FileType;
@@ -21,6 +21,7 @@ const File: React.FC<FileProps> = ({ obj, parent, padding, isActive }) => {
 
   const onClick = () => {
     dispatch(setActiveElement(obj.id));
+    dispatch(addTab(obj.id));
     dispatch(setActiveTab(obj.id));
   };
 

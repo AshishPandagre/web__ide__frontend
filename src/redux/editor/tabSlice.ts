@@ -16,9 +16,22 @@ export const tabSlice = createSlice({
       state.activeTab = action.payload;
     },
 
-    addTab: (state) => {},
+    addTab: (state, action) => {
+      // adds a tab next to the active tab.
+      const file_id = action.payload;
+      const active_tab = state.activeTab;
+      const active_tab_pos = state.tabs.indexOf(active_tab);
 
-    closeTab: (state) => {},
+      if (!state.tabs.includes(file_id)) {
+        state.tabs.splice(active_tab_pos + 1, 0, file_id);
+      }
+    },
+
+    closeTab: (state, action) => {
+      const tab_id = action.payload;
+      const pos = state.tabs.indexOf(tab_id);
+      state.tabs.splice(pos, 1);
+    },
   },
 });
 

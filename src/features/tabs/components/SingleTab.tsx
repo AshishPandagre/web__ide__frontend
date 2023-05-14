@@ -7,7 +7,7 @@ import {
   openFolder,
   setActiveElement,
 } from "../../../redux/editor/fileTreeSlice";
-import { setActiveTab } from "../../../redux/editor/tabSlice";
+import { closeTab, setActiveTab } from "../../../redux/editor/tabSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 
 type SingleTabProps = {
@@ -18,6 +18,10 @@ type SingleTabProps = {
 const SingleTab: React.FC<SingleTabProps> = ({ tab, active }) => {
   const dispatch = useAppDispatch();
   const elements = useAppSelector((state) => state.fileTree.elements);
+
+  const onClose = () => {
+    dispatch(closeTab(tab.id))
+  }
 
   const onClick = () => {
     dispatch(setActiveTab(tab.id));
@@ -51,6 +55,7 @@ const SingleTab: React.FC<SingleTabProps> = ({ tab, active }) => {
         className={`rounded-sm fill-[#818181] hover:bg-[#404040] hover:fill-[#cecece] ${
           !active && "invisible group-hover:visible"
         }`}
+        onClick={onClose}
       />
     </div>
   );
