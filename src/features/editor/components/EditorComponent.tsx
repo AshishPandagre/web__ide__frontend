@@ -18,6 +18,7 @@ const EditorComponent = () => {
             enabled: false,
           },
         }}
+        height='93%'
       />
     </>
   );

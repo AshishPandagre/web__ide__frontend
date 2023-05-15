@@ -4,7 +4,7 @@ import { BiRefresh } from "react-icons/bi";
 import { MdOpenInNew } from "react-icons/md";
 
 const Preview = () => {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("https://chat.openai.com");
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const refresh = () => {
@@ -39,8 +39,7 @@ const Preview = () => {
           ref={iframeRef}
           src={url}
           className="h-full w-full border-0 bg-white outline-none"
-          sandbox="allow-scripts allow-modal"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-orientation-lock allow-pointer-lock"
         ></iframe>
       </div>
     </div>
