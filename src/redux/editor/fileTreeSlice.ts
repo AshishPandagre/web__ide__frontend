@@ -46,7 +46,7 @@ export const fileTreeSlice = createSlice({
 
     openFolder: (state, action) => {
       const element = state.elements[action.payload.id] as FolderType;
-      element.open = action.payload.open
+      if(element) element.open = action.payload.open
     },
 
     setActiveElement: (state, action) => {      
