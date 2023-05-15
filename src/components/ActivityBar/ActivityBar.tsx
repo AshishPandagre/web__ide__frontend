@@ -10,11 +10,20 @@ import Settings from "../../features/settings/components/Settings";
 
 export type ActivityBarType = "file-explorer" | "search" | "room" | "settings";
 
-const ActivityBar = () => {
+interface ActivityBarPropsType {
+  openSidebar: () => void;
+  toggleSidebar: () => void;
+}
+
+const ActivityBar: React.FC<ActivityBarPropsType> = ({ openSidebar, toggleSidebar }) => {
   const [active, setActive] = useState<ActivityBarType>("file-explorer");
 
   const onClick = (x: ActivityBarType) => {
-    setActive(x);
+    if (x != active) {
+      setActive(x);
+      openSidebar()
+    }
+    else toggleSidebar();
   };
 
   return (

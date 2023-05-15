@@ -1,16 +1,28 @@
-import EditorHeader from "../features/editorHeader/components/EditorHeader";
+import {
+  ReflexContainer,
+  ReflexElement,
+  ReflexSplitter
+} from "react-reflex";
 import ActivityBar from "../components/ActivityBar/ActivityBar";
 import EditorComponent from "../features/editor/components/EditorComponent";
+import EditorHeader from "../features/editorHeader/components/EditorHeader";
 import Preview from "../features/preview/components/Preview";
-import { ReflexContainer, ReflexSplitter, ReflexElement } from "react-reflex";
+import useSidebar from "./hooks/useSidebar";
 
 const Editor = () => {
+  const {barSize, enableBar, openSidebar, toggleSidebar, onStopResize} = useSidebar()
+
   return (
     <div className="flex h-screen select-none flex-col overflow-hidden bg-[#131313] text-white">
       <EditorHeader />
       <ReflexContainer className="flex h-full" orientation="vertical">
-        <ReflexElement flex={0.2} minSize={48} className="flex min-w-0">
-          <ActivityBar />
+        <ReflexElement
+          flex={enableBar ? barSize : 0}
+          minSize={48}
+          className="flex min-w-0"
+          onStopResize={onStopResize}
+        >
+          <ActivityBar openSidebar={openSidebar} toggleSidebar={toggleSidebar} />
         </ReflexElement>
 
         <ReflexSplitter
