@@ -3,6 +3,7 @@ import * as monaco_type from "monaco-editor";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Tabs from "../../tabs/components/Tabs";
 import { updateCode } from "../../../redux/editor/fileCodeSlice";
+import BlankEditor from "./BlankEditor";
 
 const EditorComponent = () => {
   const dispatch = useAppDispatch();
@@ -57,7 +58,7 @@ const EditorComponent = () => {
           path={active_tab_id}
         />
       ) : (
-        "default screen"
+        <BlankEditor />
       )}
     </>
   );
