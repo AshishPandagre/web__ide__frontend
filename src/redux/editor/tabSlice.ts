@@ -38,9 +38,24 @@ export const tabSlice = createSlice({
       }
       state.tabs.splice(pos, 1);
     },
+
+    setLeftActive: (state, action) => {
+      const tab_id = action.payload;
+      const pos = state.tabs.indexOf(tab_id);
+      if (pos == 0) state.activeTab = state.tabs[state.tabs.length - 1];
+      else state.activeTab = state.tabs[pos - 1];
+    },
+
+    setRightActive: (state, action) => {
+      const tab_id = action.payload;
+      const pos = state.tabs.indexOf(tab_id);
+      if (pos == state.tabs.length - 1) state.activeTab = state.tabs[0];
+      else state.activeTab = state.tabs[pos + 1];
+    },
   },
 });
 
 export default tabSlice.reducer;
 
-export const { setActiveTab, addTab, closeTab } = tabSlice.actions;
+export const { setActiveTab, addTab, closeTab, setLeftActive, setRightActive } =
+  tabSlice.actions;
