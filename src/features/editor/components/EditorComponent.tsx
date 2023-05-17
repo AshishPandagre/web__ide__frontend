@@ -1,25 +1,52 @@
-import { Editor, useMonaco } from "@monaco-editor/react";
-import { useEffect } from "react";
-import useCustomTheme from "../hooks/useCustomTheme";
+import { Editor, Monaco } from "@monaco-editor/react";
+import * as monaco_type from "monaco-editor";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Tabs from "../../tabs/components/Tabs";
+import { updateCode } from "../../../redux/editor/fileCodeSlice";
 
 const EditorComponent = () => {
-  useCustomTheme();
+  const dispatch = useAppDispatch();
+
+  const active_tab_id = useAppSelector((state) => state.tabs.activeTab);
+  const active_tab_code = useAppSelector((state) => state.fileCode)[active_tab_id];
+
+  function editorMount(editor: monaco_type.editor.IStandaloneCodeEditor, monaco: Monaco) {
+    editor.onDidChangeModelContent((e) => {
+      const file_id = editor.getModel()?.uri.path.slice(1);
+      const value = editor.getValue();
+      dispatch(updateCode({ file_id, value }));
+    });
+
+    // set a theme
+    monaco?.editor.defineTheme("my-theme", {
+      base: "vs-dark",
+      inherit: true,
+      rules: [],
+      colors: { "editor.background": "#121212" },
+    });
+    monaco?.editor.setTheme("my-theme");
+  }
 
   return (
     <>
       <Tabs />
-      <Editor
-        defaultLanguage="javascript"
-        defaultValue="console.log('hello world')"
-        options={{
-          fontSize: 18,
-          minimap: {
-            enabled: false,
-          },
-        }}
-        height='93%'
-      />
+      {active_tab_id ? (
+        <Editor
+          onMount={editorMount}
+          defaultLanguage="javascript"
+          value={active_tab_code}
+          options={{
+            fontSize: 18,
+            minimap: {
+              enabled: false,
+            },
+          }}
+          height="93%"
+          path={active_tab_id}
+        />
+      ) : (
+        "default screen"
+      )}
     </>
   );
 };

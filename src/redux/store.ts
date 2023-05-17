@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import fileTreeReducer from './editor/fileTreeSlice'
 import tabsReducer from "./editor/tabSlice";
+import fileCodeReducer from "./editor/fileCodeSlice";
 
 export const store = configureStore({
   reducer: {
     fileTree: fileTreeReducer,
-    tabs: tabsReducer
+    tabs: tabsReducer,
+    fileCode: fileCodeReducer
   },
 });
 
