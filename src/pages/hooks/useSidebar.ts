@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import { HandlerProps } from "react-reflex";
 
 export default function useSidebar() {
@@ -14,6 +15,11 @@ export default function useSidebar() {
     if (barSize < 0.2) setBarSize(0.2);
     setEnableBar(!enableBar);
   };
+
+  useHotkeys("ctrl+b", toggleSidebar, {
+    preventDefault: true,
+    enableOnFormTags: true,
+  });
 
   const onStopResize = (args: HandlerProps) => {
     if ((args.component.props.flex || 0) < 0.2) setEnableBar(false);

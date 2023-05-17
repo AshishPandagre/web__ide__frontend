@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillGithub, AiOutlineSearch, AiOutlineTeam } from "react-icons/ai";
 import { TfiFiles } from "react-icons/tfi";
 import { FiSettings } from "react-icons/fi";
@@ -7,8 +7,13 @@ import FileExplorer from "../../features/fileExplorer/components/FileExplorer";
 import Search from "../../features/search/components/Search";
 import Room from "../../features/room/components/Room";
 import Settings from "../../features/settings/components/Settings";
+import { useHotkeys } from "react-hotkeys-hook";
 
 export type ActivityBarType = "file-explorer" | "search" | "room" | "settings";
+
+export type shortcutType = {
+  [key: string]: () => void;
+};
 
 interface ActivityBarPropsType {
   openSidebar: () => void;
@@ -18,12 +23,25 @@ interface ActivityBarPropsType {
 const ActivityBar: React.FC<ActivityBarPropsType> = ({ openSidebar, toggleSidebar }) => {
   const [active, setActive] = useState<ActivityBarType>("file-explorer");
 
+  const shortcuts: shortcutType = {
+    "ctrl+shift+e": () => setActive("file-explorer"),
+    "ctrl+shift+f": () => setActive("search"),
+    "ctrl+shift+r": () => setActive("room"),
+    "ctrl+shift+x": () => setActive("settings"),
+  };
+
+  Object.keys(shortcuts).map((shortcut) => {
+    useHotkeys(shortcut, shortcuts[shortcut], {
+      preventDefault: true,
+      enableOnFormTags: true,
+    });
+  });
+
   const onClick = (x: ActivityBarType) => {
     if (x != active) {
       setActive(x);
-      openSidebar()
-    }
-    else toggleSidebar();
+      openSidebar();
+    } else toggleSidebar();
   };
 
   return (

@@ -17,6 +17,18 @@ const EditorComponent = () => {
       dispatch(updateCode({ file_id, value }));
     });
 
+    // to add an action to the editor..it's not specifically I need..but could be helpful
+    // editor.addAction({
+    //   id: 'my-unique-id',
+    //   label: 'My Label!!!',
+    //   keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.F10],
+    //   contextMenuGroupId: '1_modification',
+    //   contextMenuOrder: 2.5,
+    //   run: function(ed) {
+    //     console.log("i'm running => " + ed.getPosition());
+    //   }
+    // });
+
     // set a theme
     monaco?.editor.defineTheme("my-theme", {
       base: "vs-dark",
