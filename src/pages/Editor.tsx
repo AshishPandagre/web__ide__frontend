@@ -26,7 +26,7 @@ const Editor = () => {
         </ReflexElement>
 
         <ReflexSplitter
-          className="w-[3px] cursor-col-resize bg-[#363636]"
+          className="w-[2px] cursor-col-resize bg-[#363636] hover:bg-cyan-700 active:bg-cyan-700 hover:w-[4px] active:w-[4px]"
           propagate={true}
         />
 
@@ -35,7 +35,7 @@ const Editor = () => {
         </ReflexElement>
 
         <ReflexSplitter
-          className="w-[3px] cursor-col-resize bg-[#363636]"
+          className="w-[3px] cursor-col-resize bg-[#363636] hover:bg-cyan-700 active:bg-cyan-700 hover:w-[4px] active:w-[4px]"
           propagate={true}
         />
 
