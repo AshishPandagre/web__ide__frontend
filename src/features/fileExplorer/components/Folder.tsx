@@ -4,10 +4,10 @@ import { RiFolderOpenFill } from "react-icons/ri";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Directory from "./Directory";
 import {
-  FolderType,
   openFolder,
   setActiveElement,
 } from "../../../redux/editor/fileTreeSlice";
+import { FolderType } from "../../../redux/editor/types";
 
 type FolderProps = {
   obj: FolderType;

@@ -2,12 +2,10 @@ import path from "path";
 import React, { useEffect } from "react";
 import { IoLogoJavascript } from "react-icons/io";
 import { IconType } from "react-icons/lib";
-import {
-  FileType,
-  setActiveElement,
-} from "../../../redux/editor/fileTreeSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { addTab, setActiveTab } from "../../../redux/editor/tabSlice";
+import { setActiveElement } from "../../../redux/editor/fileTreeSlice";
+import { FileType } from "../../../redux/editor/types";
 
 type FileProps = {
   obj: FileType;

@@ -1,4 +1,4 @@
-import { FolderType, FileType, ElementsType } from "../../../redux/editor/fileTreeSlice";
+import { FolderType, FileType } from "../../../redux/editor/types";
 
 const filterAndSortByName = (content: (FolderType | FileType)[], type: string) => {
   return content

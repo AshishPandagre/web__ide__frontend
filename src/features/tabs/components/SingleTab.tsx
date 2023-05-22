@@ -1,14 +1,10 @@
 import React from "react";
 import { IoLogoJavascript } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import {
-  FileType,
-  FolderType,
-  openFolder,
-  setActiveElement,
-} from "../../../redux/editor/fileTreeSlice";
+import { openFolder, setActiveElement } from "../../../redux/editor/fileTreeSlice";
 import { closeTab, setActiveTab } from "../../../redux/editor/tabSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { FolderType, FileType } from "../../../redux/editor/types";
 
 type SingleTabProps = {
   tab: FolderType | FileType;
