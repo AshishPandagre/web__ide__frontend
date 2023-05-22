@@ -5,11 +5,16 @@ import SidebarContent from "../../../components/SidebarContainer/SidebarContent"
 import SidebarContainer from "../../../components/SidebarContainer/SidebarContainer";
 import FileTree from "./FileTree";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { openFolder } from "../../../redux/editor/fileTreeSlice";
+import {
+  openFolder,
+  setElementCreation,
+} from "../../../redux/editor/fileTreeSlice";
 
 const FileExplorer = () => {
   const dispatch = useAppDispatch();
-  const folders = Object.keys(useAppSelector((state) => state.fileTree.folder_children));
+  const folders = Object.keys(
+    useAppSelector((state) => state.fileTree.folder_children)
+  );
 
   const collapseAll = () => {
     for (let folder_id of folders) {
@@ -17,14 +22,30 @@ const FileExplorer = () => {
     }
   };
 
+  const enableNewElementInput = (type: string) => {
+    dispatch(setElementCreation(type));
+  };
+
   return (
     <SidebarContainer>
       <SidebarHeader>
         <span className="font-bold">CODE</span>
         <div className="flex items-center gap-2">
-          <VscNewFile size={18} className="cursor-pointer" />
-          <VscNewFolder size={18} className="cursor-pointer" />
-          <VscCollapseAll size={18} className="cursor-pointer" onClick={collapseAll} />
+          <VscNewFile
+            size={18}
+            className="cursor-pointer"
+            onClick={() => enableNewElementInput("file")}
+          />
+          <VscNewFolder
+            size={18}
+            className="cursor-pointer"
+            onClick={() => enableNewElementInput("folder")}
+          />
+          <VscCollapseAll
+            size={18}
+            className="cursor-pointer"
+            onClick={collapseAll}
+          />
           <BsThreeDotsVertical size={18} className="cursor-pointer" />
         </div>
       </SidebarHeader>

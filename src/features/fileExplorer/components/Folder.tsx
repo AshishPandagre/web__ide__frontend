@@ -26,7 +26,7 @@ const Folder: React.FC<FolderProps> = ({ obj, parent, padding, isActive }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <div
         className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e] ${
           isActive && "bg-[#37373d]"
@@ -36,10 +36,10 @@ const Folder: React.FC<FolderProps> = ({ obj, parent, padding, isActive }) => {
       >
         <div className="flex items-center gap-1">
           <MdArrowForwardIos
-            size={10}
+            size={13}
             className={obj.open ? "rotate-90" : ""}
           />
-          <RiFolderOpenFill fill="#90a4ae" size={20} />
+          {/* <RiFolderOpenFill fill="#90a4ae" size={13} /> */}
         </div>
         <span>{obj.name}</span>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { AiFillHtml5 } from "react-icons/ai";
+import { IoLogoJavascript } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import {
   FileType,
@@ -47,7 +47,7 @@ const SingleTab: React.FC<SingleTabProps> = ({ tab, active }) => {
       }`}
       onClick={onClick}
     >
-      <AiFillHtml5 size={17} />
+      <IoLogoJavascript size={17} />
       <p>{tab.name}</p>
       <IoClose
         fill="white"

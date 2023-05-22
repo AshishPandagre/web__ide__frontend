@@ -30,7 +30,7 @@ const Tabs = () => {
   return (
     <div
       ref={ref}
-      className="flex overflow-x-auto bg-[#191919] text-sm scrollbar-thin scrollbar-thumb-slate-200"
+      className="flex overflow-x-auto bg-[#191919] text-sm scrollbar-thin scrollbar-track-[#171718]"
     >
       {tab_objs.map((tab) => (
         <SingleTab active={active_tab == tab.id} key={tab.id} tab={tab} />

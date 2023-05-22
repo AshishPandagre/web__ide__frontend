@@ -1,6 +1,6 @@
 import path from "path";
 import React, { useEffect } from "react";
-import { AiFillHtml5 } from "react-icons/ai";
+import { IoLogoJavascript } from "react-icons/io";
 import { IconType } from "react-icons/lib";
 import {
   FileType,
@@ -34,7 +34,7 @@ const File: React.FC<FileProps> = ({ obj, parent, padding, isActive }) => {
       style={{ paddingLeft: padding * 4 }}
       onClick={onClick}
     >
-      <AiFillHtml5 size={18} />
+      <IoLogoJavascript size={13} />
       <span>{obj.name}</span>
     </div>
   );
