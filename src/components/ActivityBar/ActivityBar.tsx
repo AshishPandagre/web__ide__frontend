@@ -9,7 +9,7 @@ import Room from "../../features/room/components/Room";
 import Settings from "../../features/settings/components/Settings";
 import { useHotkeys } from "react-hotkeys-hook";
 
-export type ActivityBarType = "file-explorer" | "search" | "room" | "settings";
+export type ActivityBarType = "file-explorer" | "search" | "members" | "settings";
 
 export type shortcutType = {
   [key: string]: () => void;
@@ -26,7 +26,7 @@ const ActivityBar: React.FC<ActivityBarPropsType> = ({ openSidebar, toggleSideba
   const shortcuts: shortcutType = {
     "ctrl+shift+e": () => setActive("file-explorer"),
     "ctrl+shift+f": () => setActive("search"),
-    "ctrl+shift+r": () => setActive("room"),
+    "ctrl+shift+m": () => setActive("members"),
     "ctrl+shift+x": () => setActive("settings"),
   };
 
@@ -59,8 +59,8 @@ const ActivityBar: React.FC<ActivityBarPropsType> = ({ openSidebar, toggleSideba
             Icon={AiOutlineSearch}
           />
           <SingleItem
-            isActive={active == "room"}
-            setActive={() => onClick("room")}
+            isActive={active == "members"}
+            setActive={() => onClick("members")}
             Icon={AiOutlineTeam}
           />
           <SingleItem
@@ -75,7 +75,7 @@ const ActivityBar: React.FC<ActivityBarPropsType> = ({ openSidebar, toggleSideba
       </div>
       {active == "file-explorer" && <FileExplorer />}
       {active == "search" && <Search />}
-      {active == "room" && <Room />}
+      {active == "members" && <Room />}
       {active == "settings" && <Settings />}
     </>
   );
