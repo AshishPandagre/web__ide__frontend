@@ -13,7 +13,7 @@ const FileTree: React.FC<FileTreeProps> = () => {
   };
 
   return (
-    <div className="text-sm" onClick={onClick}>
+    <div className="text-sm h-full" onClick={onClick}>
       <Directory parent_id="root" padding={0} />
     </div>
   );
