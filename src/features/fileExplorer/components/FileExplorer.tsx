@@ -7,6 +7,7 @@ import FileTree from "./FileTree";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   openFolder,
+  setActiveElement,
   setElementCreation,
 } from "../../../redux/editor/fileTreeSlice";
 
@@ -21,6 +22,7 @@ const FileExplorer = () => {
     for (let folder_id of folders) {
       dispatch(openFolder({ id: folder_id, open: false }));
     }
+    dispatch(setActiveElement("root"))
   };
 
   const enableNewElementInput = (type: string) => {
