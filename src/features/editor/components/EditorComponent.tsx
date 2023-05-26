@@ -1,5 +1,4 @@
 import { Editor, Monaco } from "@monaco-editor/react";
-import * as monaco_type from "monaco-editor";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Tabs from "../../tabs/components/Tabs";
 import { updateCode } from "../../../redux/editor/fileCodeSlice";
@@ -11,8 +10,8 @@ const EditorComponent = () => {
   const active_tab_id = useAppSelector((state) => state.tabs.activeTab);
   const active_tab_code = useAppSelector((state) => state.fileCode)[active_tab_id];
 
-  function editorMount(editor: monaco_type.editor.IStandaloneCodeEditor, monaco: Monaco) {
-    editor.onDidChangeModelContent((e) => {
+  function editorMount(editor: any, monaco: Monaco) {
+    editor.onDidChangeModelContent((e: any) => {
       const file_id = editor.getModel()?.uri.path.slice(1);
       const value = editor.getValue();
       dispatch(updateCode({ file_id, value }));

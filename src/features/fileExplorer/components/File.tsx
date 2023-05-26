@@ -1,11 +1,10 @@
-import path from "path";
-import React, { useEffect } from "react";
+import React, { useRef } from "react";
 import { IoLogoJavascript } from "react-icons/io";
-import { IconType } from "react-icons/lib";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { addTab, setActiveTab } from "../../../redux/editor/tabSlice";
 import { setActiveElement } from "../../../redux/editor/fileTreeSlice";
+import { addTab } from "../../../redux/editor/tabSlice";
 import { FileType } from "../../../redux/editor/types";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import ContextMenu from "./ContextMenu";
 
 type FileProps = {
   obj: FileType;
@@ -16,12 +15,14 @@ type FileProps = {
 
 const File: React.FC<FileProps> = ({ obj, parent, padding, isActive }) => {
   const dispatch = useAppDispatch();
-  const activeTabId = useAppSelector(state => state.tabs.activeTab)
+  const activeTabId = useAppSelector((state) => state.tabs.activeTab);
+  const fileRef = useRef<HTMLDivElement>(null);
+  const dialogBoxRef = useRef<HTMLDivElement>(null);
 
   const onClick = (e: React.MouseEvent) => {
     dispatch(setActiveElement(obj.id));
     dispatch(addTab(obj.id));
-    e.stopPropagation()
+    e.stopPropagation();
   };
 
   return (
@@ -31,7 +32,9 @@ const File: React.FC<FileProps> = ({ obj, parent, padding, isActive }) => {
       }`}
       style={{ paddingLeft: padding * 4 }}
       onClick={onClick}
+      ref={fileRef}
     >
+      <ContextMenu objRef={fileRef} obj={obj} />
       <IoLogoJavascript size={13} />
       <span>{obj.name}</span>
     </div>

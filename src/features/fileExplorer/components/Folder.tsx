@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { RiFolderOpenFill } from "react-icons/ri";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -8,6 +8,7 @@ import {
   setActiveElement,
 } from "../../../redux/editor/fileTreeSlice";
 import { FolderType } from "../../../redux/editor/types";
+import ContextMenu from "./ContextMenu";
 
 type FolderProps = {
   obj: FolderType;
@@ -18,6 +19,7 @@ type FolderProps = {
 
 const Folder: React.FC<FolderProps> = ({ obj, parent, padding, isActive }) => {
   const dispatch = useAppDispatch();
+  const folderRef = useRef<HTMLDivElement>(null);
 
   const onClick = (e: React.MouseEvent) => {
     dispatch(setActiveElement(obj.id));
@@ -26,14 +28,16 @@ const Folder: React.FC<FolderProps> = ({ obj, parent, padding, isActive }) => {
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex w-full flex-col">
       <div
         className={`flex items-center gap-2 py-[3px] hover:bg-[#2a2d2e] ${
           isActive && "bg-[#37373d]"
         }`}
         style={{ paddingLeft: padding * 4 }}
         onClick={onClick}
+        ref={folderRef}
       >
+        <ContextMenu objRef={folderRef} obj={obj} />
         <div className="flex items-center gap-1">
           <MdArrowForwardIos
             size={13}

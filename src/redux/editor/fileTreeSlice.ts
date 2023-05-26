@@ -21,15 +21,14 @@ export const fileTreeSlice = createSlice({
     setElementCreation: (state, action) => {
       if (action.payload == null) state.elementCreation = null;
       else {
-        const type = action.payload;
-        let parent = state.activeElement;
-        if (state.elements[parent].type == "file")
-          parent = state.elements[parent].parent;
+        let { type, element } = action.payload;
+        if (state.elements[element].type == "file")
+          element = state.elements[element].parent;
         else {
-          const parent_folder = state.elements[parent] as FolderType;
+          const parent_folder = state.elements[element] as FolderType;
           parent_folder.open = true;
         }
-        state.elementCreation = { type, parent };
+        state.elementCreation = { type, parent: element };
       }
     },
 
@@ -50,8 +49,10 @@ export const fileTreeSlice = createSlice({
     deleteFileFolder: (state) => {},
 
     openFolder: (state, action) => {
-      const element = state.elements[action.payload.id] as FolderType;
-      if (element) element.open = action.payload.open;
+      let { id, open } = action.payload;
+      if (id === state.elementCreation?.parent) open = true;
+      const element = state.elements[id] as FolderType;
+      if (element) element.open = open;
     },
 
     setActiveElement: (state, action) => {

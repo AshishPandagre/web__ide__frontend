@@ -15,6 +15,7 @@ const FileExplorer = () => {
   const folders = Object.keys(
     useAppSelector((state) => state.fileTree.folder_children)
   );
+  const activeElement = useAppSelector((state) => state.fileTree.activeElement);
 
   const collapseAll = () => {
     for (let folder_id of folders) {
@@ -23,7 +24,7 @@ const FileExplorer = () => {
   };
 
   const enableNewElementInput = (type: string) => {
-    dispatch(setElementCreation(type));
+    dispatch(setElementCreation({ type, element: activeElement }));
   };
 
   return (
