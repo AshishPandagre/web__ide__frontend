@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Tabs from "../../tabs/components/Tabs";
 import { updateCode } from "../../../redux/editor/fileCodeSlice";
 import BlankEditor from "./BlankEditor";
+import * as monaco_type from "monaco-editor";
 
 const EditorComponent = () => {
   const dispatch = useAppDispatch();
@@ -10,12 +11,19 @@ const EditorComponent = () => {
   const active_tab_id = useAppSelector((state) => state.tabs.activeTab);
   const active_tab_code = useAppSelector((state) => state.fileCode)[active_tab_id];
 
-  function editorMount(editor: any, monaco: Monaco) {
+  function editorMount(editor: monaco_type.editor.IStandaloneCodeEditor, monaco: Monaco) {
     editor.onDidChangeModelContent((e: any) => {
+      console.log(e)
       const file_id = editor.getModel()?.uri.path.slice(1);
       const value = editor.getValue();
       dispatch(updateCode({ file_id, value }));
     });
+
+    editor.getModel()?.setEOL(monaco_type.editor.EndOfLineSequence.LF)
+
+    editor.onDidChangeModel(e => {
+      editor.getModel()?.setEOL(monaco_type.editor.EndOfLineSequence.LF)
+    })
 
     // to add an action to the editor..it's not specifically I need..but could be helpful
     // editor.addAction({
