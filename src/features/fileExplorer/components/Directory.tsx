@@ -8,9 +8,10 @@ import FileFolderCreateInput from "./FileFolderCreateInput";
 type DirectoryProps = {
   parent_id: string;
   padding: number;
+  loc: string;
 };
 
-const Directory: React.FC<DirectoryProps> = ({ parent_id, padding }) => {
+const Directory: React.FC<DirectoryProps> = ({ parent_id, padding, loc }) => {
   const folder_children = useAppSelector(
     (state) => state.fileTree.folder_children
   )[parent_id];
@@ -28,12 +29,17 @@ const Directory: React.FC<DirectoryProps> = ({ parent_id, padding }) => {
       {elementCreation &&
         elementCreation.parent == parent_id &&
         elementCreation.type == "folder" && (
-          <FileFolderCreateInput type="folder" padding={padding + 3} parent={parent_id} />
+          <FileFolderCreateInput
+            type="folder"
+            padding={padding + 3}
+            parent={parent_id}
+            loc={loc}
+          />
         )}
       {children.folders.map((obj) => (
         <Folder
           obj={obj}
-          parent={parent_id}
+          loc={loc}
           key={obj.id}
           padding={padding + 3}
           isActive={activeElement == obj.id}
@@ -43,12 +49,17 @@ const Directory: React.FC<DirectoryProps> = ({ parent_id, padding }) => {
       {elementCreation &&
         elementCreation.parent == parent_id &&
         elementCreation.type == "file" && (
-          <FileFolderCreateInput type="file" padding={padding + 3} parent={parent_id} />
+          <FileFolderCreateInput
+            type="file"
+            padding={padding + 3}
+            parent={parent_id}
+            loc={loc}
+          />
         )}
       {children.files.map((obj) => (
         <File
           obj={obj}
-          parent={parent_id}
+          loc={loc}
           key={obj.id}
           padding={padding + 3}
           isActive={activeElement == obj.id}

@@ -1,29 +1,25 @@
-import React, {
-  KeyboardEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { VscSymbolFile } from "react-icons/vsc";
 import {
   addFileFolder,
   setElementCreation,
 } from "../../../redux/editor/fileTreeSlice";
-import { useDispatch } from "react-redux";
-import { useAppDispatch } from "../../../redux/hooks";
 import { addTab } from "../../../redux/editor/tabSlice";
+import { useAppDispatch } from "../../../redux/hooks";
 
 interface FileFolderCreateInputProps {
   type: "file" | "folder";
   padding: number;
   parent: string;
+  loc: string;
 }
 
 const FileFolderCreateInput: React.FC<FileFolderCreateInputProps> = ({
   type,
   padding,
   parent,
+  loc,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
@@ -34,20 +30,14 @@ const FileFolderCreateInput: React.FC<FileFolderCreateInputProps> = ({
     inputRef.current?.focus();
   }, []);
 
-  const inputBlurred = () => {
-    if (name) dispatch(addFileFolder({ type, name, parent }));
-    dispatch(setElementCreation(null));
-  };
-
-  const onkeyup = (e: any) => {
-    if (e.key == "Enter") {
-      if (name) {
-        const id = (Math.floor(Math.random() * 900) + 100).toString();
-        dispatch(addFileFolder({ id, type, name, parent }));
-        if (type == "file") dispatch(addTab(id));
-      }
-      dispatch(setElementCreation(null));
+  const save = () => {
+    if (name) {
+      const new_loc = loc + "/" + name;
+      const id = (Math.floor(Math.random() * 900) + 100).toString();
+      dispatch(addFileFolder({ id, type, name, parent }));
+      if (type == "file") dispatch(addTab(id));
     }
+    dispatch(setElementCreation(null));
   };
 
   return (
@@ -62,9 +52,9 @@ const FileFolderCreateInput: React.FC<FileFolderCreateInputProps> = ({
       <input
         ref={inputRef}
         className="w-full bg-[#171719] outline-none ring-2 ring-blue-900"
-        onBlur={inputBlurred}
+        onBlur={save}
         onChange={(e) => setName(e.target.value)}
-        onKeyUp={onkeyup}
+        onKeyUp={(e) => e.key == "Enter" && save()}
       />
     </div>
   );

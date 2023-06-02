@@ -8,22 +8,23 @@ import ContextMenu from "./ContextMenu";
 
 type FileProps = {
   obj: FileType;
-  parent: string;
   padding: number;
   isActive: boolean;
+  loc: string
 };
 
-const File: React.FC<FileProps> = ({ obj, parent, padding, isActive }) => {
+const File: React.FC<FileProps> = ({ obj, padding, isActive, loc }) => {
   const dispatch = useAppDispatch();
-  const activeTabId = useAppSelector((state) => state.tabs.activeTab);
   const fileRef = useRef<HTMLDivElement>(null);
-  const dialogBoxRef = useRef<HTMLDivElement>(null);
+  const fileLoc = loc + '/' + obj.name;
 
   const onClick = (e: React.MouseEvent) => {
     dispatch(setActiveElement(obj.id));
     dispatch(addTab(obj.id));
     e.stopPropagation();
   };
+
+  console.log(fileLoc);
 
   return (
     <div
